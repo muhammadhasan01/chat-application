@@ -1,5 +1,4 @@
 html, body {
-    font-family: 'Roboto', sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -10,6 +9,7 @@ html, body {
 
 * {
     box-sizing: border-box;
+    font-family: 'proxima-nova-regular', 'Roboto', sans-serif;
 }
 
 .joinOuterContainer {
