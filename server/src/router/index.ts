@@ -1,11 +1,10 @@
-import {Response} from "express";
+import express, {Response} from "express";
 
-const express = require("express");
 const router = express.Router();
 
 router.get("/", (_, res: Response) => {
   res.send("Server is up and running")
 })
 
-module.exports = router;
+export default router;
 
