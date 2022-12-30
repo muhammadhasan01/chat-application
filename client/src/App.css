@@ -19,3 +19,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
+* {
+    font-family: 'proxima-nova-regular', 'Roboto', sans-serif;
+}
