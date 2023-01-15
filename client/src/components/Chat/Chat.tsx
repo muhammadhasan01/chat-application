@@ -1,14 +1,17 @@
-import {useState, useEffect} from 'react';
-import queryString from 'query-string';
-import {io, Socket} from 'socket.io-client';
+import {useState, useEffect} from "react";
+import queryString from "query-string";
+import {io, Socket} from "socket.io-client";
 import {useLocation} from "react-router";
 import {ChatQueryString} from "../../helper/interfaces";
+
+import "./Chat.css";
+import InfoBar from "../InfoBar/InfoBar";
 
 let socket: Socket;
 
 const Chat = () => {
-  const [name, setName] = useState<string | null>(null);
-  const [room, setRoom] = useState<string | null>(null);
+  const [name, setName] = useState<string>('');
+  const [room, setRoom] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<string[]>([]);
 
@@ -53,6 +56,7 @@ const Chat = () => {
   return (
     <div className="outerContainer">
       <div className="container">
+        <InfoBar room={room} />
         <input
           value={message}
           onChange={e => setMessage(e.target.value)}
