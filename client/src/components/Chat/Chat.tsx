@@ -3,15 +3,14 @@ import queryString from 'query-string';
 import {io, Socket} from 'socket.io-client';
 import {useLocation} from "react-router";
 import {ChatQueryString} from "../../helper/interfaces";
-import {ChatMessage} from "../../../../server/src/helper/interfaces";
 
 let socket: Socket;
 
 const Chat = () => {
   const [name, setName] = useState<string | null>(null);
   const [room, setRoom] = useState<string | null>(null);
-  const [message, setMessage] = useState<ChatMessage | null>(null);
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [message, setMessage] = useState<string>('');
+  const [messages, setMessages] = useState<string[]>([]);
 
   const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
   const {search} = useLocation();
@@ -38,7 +37,7 @@ const Chat = () => {
   }, [search, endpoint]);
 
   useEffect(() => {
-    socket.on('message', (message: ChatMessage) => {
+    socket.on('message', (message: string) => {
       setMessages([...messages, message]);
     });
   }, [messages])
@@ -48,22 +47,15 @@ const Chat = () => {
     if (!message) {
       return;
     }
-    socket.emit("sendMessage", message, () => setMessage(null));
+    socket.emit("sendMessage", message, () => setMessage(''));
   };
-
-  if (!message) {
-    return <div>Loading...</div>;
-  }
-
-  console.log({name, room});
-  console.log({message, messages});
 
   return (
     <div className="outerContainer">
       <div className="container">
         <input
-          value={message.text}
-          onChange={e => setMessage({name: message.name, text: e.target.value})}
+          value={message}
+          onChange={e => setMessage(e.target.value)}
           onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
         />
       </div>
