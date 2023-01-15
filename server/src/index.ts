@@ -37,6 +37,7 @@ io.on("connection", (socket: Socket) => {
   })
 
   socket.on("sendMessage", (message: string, callback: Function) => {
+    console.log("received message of ", message);
     const user = getUser(socket.id);
     if (!user) {
       return callback({error: `No user was found with the id=${socket.id}`})
