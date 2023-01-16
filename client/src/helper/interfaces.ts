@@ -14,3 +14,8 @@ export interface InputProps {
   setMessage: Function
   sendMessage: Function
 }
+
+export interface MessagesProps {
+  messages: string[]
+  name: string
+}
