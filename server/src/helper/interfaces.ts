@@ -13,8 +13,3 @@ export interface CreateUserResponse {
   error?: string
   user?: UserModel
 }
-
-export interface ChatMessage {
-  name: string
-  text: string
-}
