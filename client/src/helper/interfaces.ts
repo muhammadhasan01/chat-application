@@ -8,3 +8,9 @@ export interface ChatQueryString extends ParsedQuery {
 export interface InfoBarProps {
   room: string
 }
+
+export interface InputProps {
+  message: string
+  setMessage: Function
+  sendMessage: Function
+}
