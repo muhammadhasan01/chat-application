@@ -9,13 +9,23 @@ export interface InfoBarProps {
   room: string
 }
 
+export interface Message {
+  user: string
+  text: string
+}
+
 export interface InputProps {
-  message: string
-  setMessage: Function
+  text: string
+  setText: Function
   sendMessage: Function
 }
 
 export interface MessagesProps {
-  messages: string[]
+  messages: Message[]
+  name: string
+}
+
+export interface MessageProps {
+  message: Message
   name: string
 }
