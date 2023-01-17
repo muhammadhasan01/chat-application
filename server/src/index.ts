@@ -30,19 +30,21 @@ io.on("connection", (socket: Socket) => {
     if (error || !user) {
       return callback(error);
     }
-    socket.emit("message", {user: "admin", text: `${user.name}, welcome to the room ${user.room}`})
+    console.log("joined with us is ", {user});
+    socket.emit("message", {user: "Admin", text: `${user.name}, welcome to the room ${user.room}`})
     socket.broadcast.to(user.room).emit("message", {user: "admin", text: `${user.name}, has joined!`});
     socket.join(user.room);
     callback();
   })
 
-  socket.on("sendMessage", (message: string, callback: Function) => {
-    console.log("received message of ", message);
+  socket.on("sendMessage", (text: string, callback: Function) => {
     const user = getUser(socket.id);
     if (!user) {
+      console.log("not found for ", socket.id);
       return callback({error: `No user was found with the id=${socket.id}`})
     }
-    io.to(user.room).emit('message', {name: user.name, text: message});
+    console.log("received text of ", {user, text});
+    io.to(user.room).emit('message', {user: user.name, text});
     callback();
   });
 
