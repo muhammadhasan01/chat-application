@@ -1,14 +1,14 @@
 import "./Input.css";
 import {InputProps} from "../../helper/interfaces";
 
-const Input = ({message, setMessage, sendMessage}: InputProps) => {
+const Input = ({text, setText, sendMessage}: InputProps) => {
   return <form className="form">
     <input
       className="input"
       type="text"
       placeholder="type a message..."
-      value={message}
-      onChange={e => setMessage(e.target.value)}
+      value={text}
+      onChange={e => setText(e.target.value)}
       onKeyPress={e => e.key === "Enter" ? sendMessage(e) : null}
     />
     <button
