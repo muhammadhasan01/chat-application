@@ -18,7 +18,7 @@ const addUser = ({id, name, room}: UserModel): CreateUserResponse => {
 const removeUser = (id: string) => {
   const index = users.findIndex(user => user.id === id);
   if (index === -1) {
-    return {};
+    return null;
   }
   return users.splice(index, 1)[0];
 }
