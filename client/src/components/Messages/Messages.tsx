@@ -5,7 +5,7 @@ import {MessagesProps} from "../../helper/interfaces";
 import Message from "../Message/Message";
 
 const Messages = ({messages, name}: MessagesProps) => {
-  return <ScrollToBottom>
+  return <ScrollToBottom className='messages'>
     {messages.map((message, index) =>
       <div key={index}>
         <Message message={message} name={name} />
