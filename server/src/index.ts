@@ -5,7 +5,7 @@ import {createServer} from "http";
 import router from "./router";
 import dotenv from "dotenv";
 import {ChatProp} from "./helper/interfaces";
-import {addUser, getUser} from "./helper/users";
+import {addUser, getUser, removeUser} from "./helper/users";
 
 dotenv.config();
 
@@ -50,6 +50,10 @@ io.on("connection", (socket: Socket) => {
 
   socket.on("disconnect", () => {
     console.log(`User ${socket.id} have been disconnected...`);
+    const user = removeUser(socket.id);
+    if (user) {
+      io.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left` })
+    }
   })
 })
 
