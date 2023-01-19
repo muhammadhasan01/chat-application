@@ -5,7 +5,7 @@ import {createServer} from "http";
 import router from "./router";
 import dotenv from "dotenv";
 import {ChatProp} from "./helper/interfaces";
-import {addUser, getUser, removeUser} from "./helper/users";
+import {addUser, getUser, getUsersInRoom, removeUser} from "./helper/users";
 
 dotenv.config();
 
@@ -30,29 +30,39 @@ io.on("connection", (socket: Socket) => {
     if (error || !user) {
       return callback(error);
     }
+
     console.log("joined with us is ", {user});
+
     socket.emit("message", {user: "Admin", text: `${user.name}, welcome to the room ${user.room}`})
     socket.broadcast.to(user.room).emit("message", {user: "admin", text: `${user.name}, has joined!`});
+
     socket.join(user.room);
+
+    io.to(user.room).emit('roomData', {room: user.room, users: getUsersInRoom(user.room)});
     callback();
   })
 
   socket.on("sendMessage", (text: string, callback: Function) => {
     const user = getUser(socket.id);
+
     if (!user) {
       console.log("not found for ", socket.id);
       return callback({error: `No user was found with the id=${socket.id}`})
     }
+
     console.log("received text of ", {user, text});
     io.to(user.room).emit('message', {user: user.name, text});
+    io.to(user.room).emit('roomData', {room: user.room, users: getUsersInRoom(user.room)})
+
     callback();
   });
 
   socket.on("disconnect", () => {
     console.log(`User ${socket.id} have been disconnected...`);
     const user = removeUser(socket.id);
+
     if (user) {
-      io.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left` })
+      io.to(user.room).emit('message', {user: 'admin', text: `${user.name} has left`})
     }
   })
 })
