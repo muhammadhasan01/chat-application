@@ -29,3 +29,7 @@ export interface MessageProps {
   message: Message
   name: string
 }
+
+export interface TextContainerProps {
+  users: string[]
+}
