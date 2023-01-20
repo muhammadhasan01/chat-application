@@ -5,7 +5,7 @@ import {createServer} from "http";
 import router from "./router";
 import dotenv from "dotenv";
 import {ChatProp} from "./helper/interfaces";
-import {addUser, getUser, getUsersInRoom, removeUser} from "./helper/users";
+import {addUser, getUser, getUserNamesInRoom, removeUser} from "./helper/users";
 
 dotenv.config();
 
@@ -38,7 +38,7 @@ io.on("connection", (socket: Socket) => {
 
     socket.join(user.room);
 
-    io.to(user.room).emit('roomData', {room: user.room, users: getUsersInRoom(user.room)});
+    io.to(user.room).emit('roomData', {users: getUserNamesInRoom(user.room)});
     callback();
   })
 
@@ -52,7 +52,7 @@ io.on("connection", (socket: Socket) => {
 
     console.log("received text of ", {user, text});
     io.to(user.room).emit('message', {user: user.name, text});
-    io.to(user.room).emit('roomData', {room: user.room, users: getUsersInRoom(user.room)})
+    io.to(user.room).emit('roomData', {users: getUserNamesInRoom(user.room)})
 
     callback();
   });
