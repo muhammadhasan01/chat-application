@@ -2,13 +2,13 @@ import React, {useState, useEffect} from "react";
 import queryString from "query-string";
 import {io, Socket} from "socket.io-client";
 import {useLocation} from "react-router";
-import {ChatQueryString, Message} from "../../helper/interfaces";
+import {ChatQueryString, Message} from "helper/interfaces";
 
 import "./Chat.css";
-import InfoBar from "../InfoBar/InfoBar";
-import Input from "../Input/Input";
-import Messages from "../Messages/Messages";
-import TextContainer from "../TextContainer/TextContainer";
+import InfoBar from "@/components/InfoBar/InfoBar";
+import Input from "@/components/Input/Input";
+import Messages from "@/components/Messages/Messages";
+import TextContainer from "@/components/TextContainer/TextContainer";
 
 let socket: Socket;
 

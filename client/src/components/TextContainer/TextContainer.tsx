@@ -1,11 +1,9 @@
-import OnlineIcon from "../../icons/onlineIcon.png";
-import {TextContainerProps} from "../../helper/interfaces";
+import OnlineIcon from "@/icons/onlineIcon.png";
+import {TextContainerProps} from "@/helper/interfaces";
 
 import "./TextContainer.css";
 
 const TextContainer = ({users}: TextContainerProps) => {
-  console.log("The length is " + users);
-  console.log("Wow", users.length);
   return <div className="textContainer">
     <div>
       <h1>Realtime Chat Application <span role="img" aria-label="emoji">💬</span></h1>

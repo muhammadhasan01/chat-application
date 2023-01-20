@@ -1,5 +1,5 @@
 import "./Input.css";
-import {InputProps} from "../../helper/interfaces";
+import {InputProps} from "@/helper/interfaces";
 
 const Input = ({text, setText, sendMessage}: InputProps) => {
   return <form className="form">

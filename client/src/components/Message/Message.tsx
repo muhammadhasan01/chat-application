@@ -1,4 +1,4 @@
-import {MessageProps} from "../../helper/interfaces";
+import {MessageProps} from "@/helper/interfaces";
 import emoji from "react-easy-emoji";
 import "./Message.css";
 

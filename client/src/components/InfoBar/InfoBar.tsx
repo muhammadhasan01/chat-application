@@ -1,7 +1,7 @@
 import "./InfoBar.css";
-import onlineIcon from "../../icons/onlineIcon.png";
-import closeIcon from "../../icons/closeIcon.png";
-import {InfoBarProps} from "../../helper/interfaces";
+import onlineIcon from "@/icons/onlineIcon.png";
+import closeIcon from "@/icons/closeIcon.png";
+import {InfoBarProps} from "@/helper/interfaces";
 
 const InfoBar = ({ room }: InfoBarProps) => {
   return <div className="infoBar">
