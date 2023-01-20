@@ -8,6 +8,7 @@ import "./Chat.css";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import Messages from "../Messages/Messages";
+import TextContainer from "../TextContainer/TextContainer";
 
 let socket: Socket;
 
@@ -15,6 +16,7 @@ const Chat = () => {
   const [name, setName] = useState<string>('');
   const [room, setRoom] = useState<string>('');
   const [text, setText] = useState<string>('');
+  const [users, setUsers] = useState<string[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
 
   const endpoint = import.meta.env.VITE_SERVER_ENDPOINT;
@@ -31,7 +33,8 @@ const Chat = () => {
       transports: ['websocket']
     });
 
-    socket.emit('join', {name, room}, () => {});
+    socket.emit('join', {name, room}, () => {
+    });
 
     return () => {
       socket.emit("disconnect");
@@ -44,9 +47,15 @@ const Chat = () => {
       console.log("We have received the holy", message);
       setMessages([...messages, message]);
     });
+
+    socket.on('roomData', ({users}: {users: string[]}) => {
+      console.log("Received", users);
+      setUsers(users);
+    })
   }, [messages])
 
   console.log({text, messages});
+  console.log({users});
 
   const sendMessage = (e: React.KeyboardEvent) => {
     e.preventDefault();
@@ -58,6 +67,7 @@ const Chat = () => {
 
   return (
     <div className="outerContainer">
+      <TextContainer users={users}/>
       <div className="container">
         <InfoBar room={room}/>
         <Messages messages={messages} name={name}/>
