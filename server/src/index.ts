@@ -10,13 +10,14 @@ import {addUser, getUser, getUserNamesInRoom, removeUser} from "./helper/users";
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
+const ORIGIN = process.env.ORIGIN || "http://localhost:5173/";
 
 const app = express();
 app.use(cors());
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173/",
+    origin: ORIGIN,
     methods: ["GET", "POST"],
     credentials: true
   }
