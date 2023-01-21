@@ -54,9 +54,6 @@ const Chat = () => {
     })
   }, [messages])
 
-  console.log({text, messages});
-  console.log({users});
-
   const sendMessage = (e: React.KeyboardEvent) => {
     e.preventDefault();
     if (!text) {
