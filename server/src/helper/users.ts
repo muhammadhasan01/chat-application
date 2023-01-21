@@ -3,10 +3,10 @@ import {CreateUserResponse, UserModel} from "./interfaces";
 const users: UserModel[] = [];
 
 const addUser = ({id, name, room}: UserModel): CreateUserResponse => {
-  name = name.trim().toLowerCase();
-  room = room.trim().toLowerCase();
-
-  const existingUser = users.find(user => user.name === name && user.room === room);
+  const existingUser = users.find(user =>
+    user.name.localeCompare(name, 'en-EN', {sensitivity: 'base'}) === 0 &&
+    user.room.localeCompare(room, 'en-EN', {sensitivity: 'base'}) === 0
+  );
   if (existingUser) {
     return {error: 'Username is already taken'};
   }
