@@ -38,7 +38,7 @@ io.on("connection", (socket: Socket) => {
 
     socket.join(user.room);
 
-    io.to(user.room).emit('roomData', {users: getUserNamesInRoom(user.room)});
+    io.to(user.room).emit("roomData", {users: getUserNamesInRoom(user.room)});
     callback();
   })
 
@@ -51,8 +51,8 @@ io.on("connection", (socket: Socket) => {
     }
 
     console.log("received text of ", {user, text});
-    io.to(user.room).emit('message', {user: user.name, text});
-    io.to(user.room).emit('roomData', {users: getUserNamesInRoom(user.room)})
+    io.to(user.room).emit("message", {user: user.name, text});
+    io.to(user.room).emit("roomData", {users: getUserNamesInRoom(user.room)})
 
     callback();
   });
@@ -62,7 +62,7 @@ io.on("connection", (socket: Socket) => {
     const user = removeUser(socket.id);
 
     if (user) {
-      io.to(user.room).emit('message', {user: 'admin', text: `${user.name} has left`})
+      io.to(user.room).emit("message", {user: "admin", text: `${user.name} has left`})
     }
   })
 })

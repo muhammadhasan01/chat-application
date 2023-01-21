@@ -4,11 +4,11 @@ const users: UserModel[] = [];
 
 const addUser = ({id, name, room}: UserModel): CreateUserResponse => {
   const existingUser = users.find(user =>
-    user.name.localeCompare(name, 'en-EN', {sensitivity: 'base'}) === 0 &&
-    user.room.localeCompare(room, 'en-EN', {sensitivity: 'base'}) === 0
+    user.name.localeCompare(name, "en-EN", {sensitivity: "base"}) === 0 &&
+    user.room.localeCompare(room, "en-EN", {sensitivity: "base"}) === 0
   );
   if (existingUser) {
-    return {error: 'Username is already taken'};
+    return {error: "Username is already taken"};
   }
   const user: UserModel = {id, name, room};
   users.push(user);

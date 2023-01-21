@@ -13,9 +13,9 @@ import TextContainer from "@/components/TextContainer/TextContainer";
 let socket: Socket;
 
 const Chat = () => {
-  const [name, setName] = useState<string>('');
-  const [room, setRoom] = useState<string>('');
-  const [text, setText] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [room, setRoom] = useState<string>("");
+  const [text, setText] = useState<string>("");
   const [users, setUsers] = useState<string[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
 
@@ -30,10 +30,10 @@ const Chat = () => {
 
     socket = io(endpoint, {
       withCredentials: true,
-      transports: ['websocket']
+      transports: ["websocket"]
     });
 
-    socket.emit('join', {name, room}, () => {
+    socket.emit("join", {name, room}, () => {
     });
 
     return () => {
@@ -43,12 +43,12 @@ const Chat = () => {
   }, [search, endpoint]);
 
   useEffect(() => {
-    socket.on('message', (message: Message) => {
+    socket.on("message", (message: Message) => {
       console.log("We have received the holy", message);
       setMessages([...messages, message]);
     });
 
-    socket.on('roomData', ({users}: {users: string[]}) => {
+    socket.on("roomData", ({users}: {users: string[]}) => {
       console.log("Received", users);
       setUsers(users);
     })
@@ -62,7 +62,7 @@ const Chat = () => {
     if (!text) {
       return;
     }
-    socket.emit("sendMessage", text, () => setText(''));
+    socket.emit("sendMessage", text, () => setText(""));
   };
 
   return (
