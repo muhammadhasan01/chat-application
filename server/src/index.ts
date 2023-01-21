@@ -24,7 +24,7 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket: Socket) => {
-  console.log(`We have a new connection ${socket.id}`);
+  console.log(`We have a new connection with the id = ${socket.id}`);
 
   socket.on("join", ({name, room}: ChatProp, callback: Function) => {
     const {error, user} = addUser({id: socket.id, name, room});
@@ -32,7 +32,7 @@ io.on("connection", (socket: Socket) => {
       return callback(error);
     }
 
-    console.log("joined with us is ", {user});
+    console.log("joined with us is the user =", {user});
 
     socket.emit("message", {user: "Admin", text: `${user.name}, welcome to the room ${user.room}`})
     socket.broadcast.to(user.room).emit("message", {user: "admin", text: `${user.name}, has joined!`});
@@ -47,11 +47,11 @@ io.on("connection", (socket: Socket) => {
     const user = getUser(socket.id);
 
     if (!user) {
-      console.log("not found for ", socket.id);
+      console.log("cannot found for user with id =", socket.id);
       return callback({error: `No user was found with the id=${socket.id}`})
     }
 
-    console.log("received text of ", {user, text});
+    console.log("received text of =", text, "from user", {user});
     io.to(user.room).emit("message", {user: user.name, text});
     io.to(user.room).emit("roomData", {users: getUserNamesInRoom(user.room)})
 
@@ -59,7 +59,7 @@ io.on("connection", (socket: Socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log(`User ${socket.id} have been disconnected...`);
+    console.log(`User with id = ${socket.id} have been disconnected...`);
     const user = removeUser(socket.id);
 
     if (user) {
