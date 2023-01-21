@@ -44,12 +44,10 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on("message", (message: Message) => {
-      console.log("We have received the holy", message);
       setMessages([...messages, message]);
     });
 
     socket.on("roomData", ({users}: {users: string[]}) => {
-      console.log("Received", users);
       setUsers(users);
     })
   }, [messages])
