@@ -4,9 +4,8 @@ import "./Message.css";
 
 const Message = ({message, name}: MessageProps) => {
   const {user, text} = message;
-  const trimmedName = name.trim().toLowerCase();
 
-  if (user === trimmedName) {
+  if (user.localeCompare(name, 'en-EN', {sensitivity: 'base'}) === 0) {
     return <div className="messageContainer justifyEnd">
       <p className="sentText pr-10">{name}</p>
       <div className="messageBox backgroundBlue">
