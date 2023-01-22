@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #2979FF;
+    background: #ff6229;
     border-radius: 4px 4px 0 0;
     height: 60px;
     width: 100%;
@@ -14,6 +14,7 @@
     align-items: center;
     margin-left: 5%;
     color: white;
+    font-family: proxima-nova-bold, sans-serif;
 }
 
 .rightInnerContainer {
