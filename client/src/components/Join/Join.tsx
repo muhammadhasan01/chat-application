@@ -1,13 +1,24 @@
 import {ChangeEvent, useState} from "react";
-import {Link} from "react-router-dom";
 import "./Join.css";
+import {useNavigate} from "react-router";
 
 const Join = () => {
   const [name, setName] = useState<string | null>(null);
   const [room, setRoom] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    if (!name || !room) {
+      alert("Name and Room must be filled");
+      return;
+    }
+    navigate(`/chat?name=${name}&room=${room}`);
+  }
+
   return (
     <div className="joinOuterContainer">
-      <div className="joinInnerContainer">
+      <form onSubmit={handleSubmit} className="joinInnerContainer">
         <h1 className="heading">Join</h1>
         <div>
           <input placeholder="Name" className="joinInput" type="text"
@@ -17,10 +28,8 @@ const Join = () => {
           <input placeholder="Room" className="joinInput mt-20" type="text"
                  onChange={(e: ChangeEvent<HTMLInputElement>) => setRoom(e.target.value)}/>
         </div>
-        <Link onClick={e => (!name || !room ? e.preventDefault() : null)} to={`/chat?name=${name}&room=${room}`}>
-          <button className="button" type="submit"><b>Sign in</b></button>
-        </Link>
-      </div>
+        <button className="button" type="submit">Sign In</button>
+      </form>
     </div>
   )
 }
