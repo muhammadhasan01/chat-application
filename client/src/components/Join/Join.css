@@ -38,15 +38,21 @@ html, body {
 }
 
 .button {
-    color: #fff !important;
+    color: #232428 !important;
     text-transform: uppercase;
-    text-decoration: none;
-    background: #2979FF;
+    background: #ffb601;
     padding: 20px;
     border-radius: 5px;
+    margin-top: 15px;
     display: inline-block;
     border: none;
     width: 100%;
+    font-family: proxima-nova-bold, serif;
+    transition: all 0.2s ease-in-out;
+}
+
+.button:hover, .button:active {
+    transform: scale(1.05);
 }
 
 .mt-20 {
