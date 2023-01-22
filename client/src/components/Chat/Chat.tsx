@@ -33,7 +33,10 @@ const Chat = () => {
       transports: ["websocket"]
     });
 
-    socket.emit("join", {name, room}, () => {
+    socket.emit("join", {name, room}, (err: string) => {
+      if (err) {
+        alert(err);
+      }
     });
 
     return () => {
@@ -47,7 +50,7 @@ const Chat = () => {
       setMessages([...messages, message]);
     });
 
-    socket.on("roomData", ({users}: {users: string[]}) => {
+    socket.on("roomData", ({users}: { users: string[] }) => {
       setUsers(users);
     })
   }, [messages])
