@@ -46,8 +46,8 @@
 
 To run this project, here are the requirements:
 
-- NPM (9.1.3)
-- Node (18.12.1)
+- NPM (Version 9.1.3)
+- Node (Version 18.12.1)
 
 To look around with the code you can `git clone` this repository, or see it in GitHub Dev Mode (Click `"."`in your browser, or change `github.com` to `github.dev`).
 
