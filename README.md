@@ -25,14 +25,12 @@
 - Room chat can have multiple users at the same time
 - Messaging between users in the same room
 - Enable to show users who are in the room
-
-From a technical standpoint, this project is useful for:
-
-- Demonstrating simple usage of `socket.io` for realtime chat
-- Demonstrating boostrap `React` with `Vite`
-- Reference on connecting Frontend and Backend for a chat application
-- Uses `TypeScript` on both the frontend and backend
-- Other code implementations that might be useful to learn
+- From a technical standpoint, this project _might_ be useful for:
+  - Demonstrating simple usage of `socket.io` for realtime chat
+  - Demonstrating boostrap `React` with `Vite`
+  - Reference on connecting Frontend and Backend for a chat application
+  - Uses `TypeScript` on both the frontend and backend
+  - Other code implementations that might be useful to learn
 
 ## Screenshots
 
@@ -83,7 +81,7 @@ Room for improvement:
 - Handle errors more gracefully
 - Add more features such as Sign Up / Log In / Other cool features
 
-## Troubleshoot Lesson
+## Troubleshoot Lessons
 
 <details>
   <summary>Stuff that I faced and solved when doing this project</summary>
